@@ -7,7 +7,9 @@ import com.koerber.hospital.persistence.entities.Doctor;
 import com.koerber.hospital.persistence.entities.Pathology;
 import com.koerber.hospital.persistence.entities.Patient;
 import com.koerber.hospital.persistence.entities.Speciality;
-import com.koerber.hospital.persistence.repositories.HospitalManagementRepository;
+import com.koerber.hospital.persistence.repositories.DoctorManagementRepository;
+import com.koerber.hospital.persistence.repositories.PathologyManagementRepository;
+import com.koerber.hospital.persistence.repositories.PatientManagementRepository;
 import com.koerber.hospital.ui.controllers.dtos.ConsultDTO;
 import com.koerber.hospital.ui.controllers.dtos.ListOfConsultsDTO;
 import com.koerber.hospital.ui.controllers.dtos.ListOfPatientsDTO;
@@ -19,11 +21,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class HospitalManagementService {
 
-    private final HospitalManagementRepository hospitalManagementRepository;
+    private final PatientManagementRepository patientManagementRepository;
+    private final DoctorManagementRepository doctorManagementRepository;
+    private final PathologyManagementRepository pathologyManagementRepository;
 
     @Autowired
-    public HospitalManagementService(HospitalManagementRepository hospitalManagementRepository) {
-        this.hospitalManagementRepository = hospitalManagementRepository;
+    public HospitalManagementService(PatientManagementRepository patientManagementRepository,
+                                     DoctorManagementRepository doctorManagementRepository,
+                                     PathologyManagementRepository pathologyManagementRepository) {
+        this.patientManagementRepository = patientManagementRepository;
+        this.doctorManagementRepository = doctorManagementRepository;
+        this.pathologyManagementRepository = pathologyManagementRepository;
     }
 
     public void addConsult(final ConsultDTO consultDTO) {
@@ -43,7 +51,7 @@ public class HospitalManagementService {
         consultToAdd.setPathology(pathology);
 
         //Call the repository to save the consult
-        hospitalManagementRepository.save(consultToAdd);
+        //hospitalManagementRepository.save(consultToAdd);
     }
 
     public ListOfConsultsDTO listConsults(final PatientDTO patientDTO) {
@@ -71,17 +79,17 @@ public class HospitalManagementService {
 
     private Patient findPatientByName(String patientName) {
         //Call the repository to find the patient by name
-        return hospitalManagementRepository.findPatientByName(patientName);
+        return patientManagementRepository.findPatientByName(patientName);
     }
 
     private Doctor findDoctorByName(String doctorName) {
         //Call the repository to find the doctor by name
-        return hospitalManagementRepository.findDoctorByName(doctorName);
+        return doctorManagementRepository.findDoctorByName(doctorName);
     }
 
     private Pathology findPathologyByName(String pathologyName) {
         //Call the repository to find the pathology by name
-        return hospitalManagementRepository.findPathologyByName(pathologyName);
+        return pathologyManagementRepository.findPathologyByName(pathologyName);
     }
 
 }

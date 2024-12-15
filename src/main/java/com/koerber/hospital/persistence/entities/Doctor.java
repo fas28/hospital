@@ -17,11 +17,10 @@ public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "doctor_id")
-    private Long doctorId;
+    private Long id;
 
     @Column
-    private String doctorName;
+    private String name;
 
     @OneToOne
     @JoinColumn(name = "speciality", referencedColumnName = "id")
