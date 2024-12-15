@@ -36,13 +36,16 @@ CREATE TABLE symptoms
     FOREIGN KEY (pathology) REFERENCES pathologies (id)
 );
 
-CREATE TABLE appointments
+CREATE TABLE consults
 (
     id        SERIAL PRIMARY KEY,
     patient   INT NOT NULL,
     doctor    INT NOT NULL,
+    speciality INT NOT NULL,
     pathology INT NOT NULL,
     FOREIGN KEY (patient) REFERENCES patients (id),
     FOREIGN KEY (doctor) REFERENCES doctors (id),
     FOREIGN KEY (pathology) REFERENCES pathologies (id)
 );
+
+
