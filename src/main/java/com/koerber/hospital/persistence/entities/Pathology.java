@@ -11,9 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 
 @Entity
+@Data
 @Table(name = "pathology")
 public class Pathology {
 

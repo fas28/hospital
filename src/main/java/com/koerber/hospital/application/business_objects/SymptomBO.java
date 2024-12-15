@@ -1,6 +1,5 @@
 package com.koerber.hospital.application.business_objects;
 
-
-public class Consult {
+public class SymptomBO {
 
 }
